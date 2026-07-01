@@ -1,0 +1,18 @@
+{"_id":"drafts.menu-savory-1","_type":"menuItem","name":"Pomodoro Twist","category":"savory","price":200,"description":"Homemade Pesto, Tomatoes, Lettuce, Cheddar cheese","dietary":["veg"],"available":true,"order":1}
+{"_id":"drafts.menu-savory-2","_type":"menuItem","name":"Mush Melt","category":"savory","price":240,"description":"Creamy mushroom, Lettuce, Onions, red/yellow/green bell peppers","dietary":["veg"],"available":true,"order":2}
+{"_id":"drafts.menu-savory-3","_type":"menuItem","name":"Egg Rise","category":"savory","price":240,"description":"Scrambled eggs, Homemade Pesto, Lettuce, Tomato, Cheese","dietary":["egg"],"available":true,"order":3}
+{"_id":"drafts.menu-savory-4","_type":"menuItem","name":"Cheesy Affair","category":"savory","price":250,"description":"Mozzarella, Cheddar, Cream, Corn, Lettuce","dietary":["veg"],"available":true,"order":4}
+{"_id":"drafts.menu-savory-5","_type":"menuItem","name":"Pizza Puffie","category":"savory","price":255,"description":"Pizza Sauce, Corn, Olives, Bell Peppers, Mozzarella","dietary":["veg"],"available":true,"order":5}
+{"_id":"drafts.menu-sweet-1","_type":"menuItem","name":"Cacao Burst","category":"sweet","price":195,"description":"Chocolate sauce, Chocolate cream","dietary":["veg"],"available":true,"order":1}
+{"_id":"drafts.menu-sweet-2","_type":"menuItem","name":"Cookie Cloud","category":"sweet","price":230,"description":"Chocolate sauce, Vanilla cream, Oreo topping","dietary":["veg"],"available":true,"order":2}
+{"_id":"drafts.menu-sweet-3","_type":"menuItem","name":"Nutellatine","category":"sweet","price":240,"description":"Nutella, Vanilla cream","dietary":["veg"],"available":true,"order":3}
+{"_id":"drafts.menu-sweet-4","_type":"menuItem","name":"Strawberry Swirl","category":"sweet","price":240,"description":"Strawberry sauce, Fresh Strawberry, Vanilla cream","dietary":["veg"],"available":true,"order":4}
+{"_id":"drafts.menu-sweet-5","_type":"menuItem","name":"Pista Bliss","category":"sweet","price":280,"description":"Viral Dubai Chocolate Croissant","dietary":["veg"],"available":true,"order":5}
+{"_id":"drafts.drink-1","_type":"drinkItem","name":"Espresso","price":70,"available":true,"order":1}
+{"_id":"drafts.drink-2","_type":"drinkItem","name":"Americano (Double Shot)","price":110,"available":true,"order":2}
+{"_id":"drafts.drink-3","_type":"drinkItem","name":"Cappuccino","price":110,"available":true,"order":3}
+{"_id":"drafts.drink-4","_type":"drinkItem","name":"Latte","price":120,"available":true,"order":4}
+{"_id":"drafts.drink-5","_type":"drinkItem","name":"Water — 0.5L","price":35,"available":true,"order":5}
+{"_id":"drafts.drink-6","_type":"drinkItem","name":"7 Up","price":50,"available":true,"order":6}
+{"_id":"drafts.drink-7","_type":"drinkItem","name":"Pepsi","price":50,"available":true,"order":7}
+{"_id":"drafts.drink-8","_type":"drinkItem","name":"Ice Tea — Lipton","price":65,"available":true,"order":8}
