@@ -9,6 +9,16 @@ export default function LocationPage() {
       <h1 className="font-serif text-4xl text-[#540244] mb-2">Location</h1>
       <div className="w-10 h-0.5 bg-[#C4973B] mb-10" />
 
+      {/* Get Directions CTA */}
+      <a
+        href="https://www.google.com/maps/dir/?api=1&destination=-20.2684055,57.4870718&hl=en"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="block w-full bg-[#540244] text-[#FDF6EC] text-center py-4 rounded-full font-semibold text-sm tracking-wide mb-10"
+      >
+        Get Directions
+      </a>
+
       {/* Info rows */}
       <div className="flex flex-col gap-6 mb-10">
 
@@ -75,16 +85,6 @@ export default function LocationPage() {
         </div>
 
       </div>
-
-      {/* Get Directions CTA */}
-      <a
-        href="https://www.google.com/maps/dir/?api=1&destination=-20.2684055,57.4870718&hl=en"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="block w-full bg-[#540244] text-[#FDF6EC] text-center py-4 rounded-full font-semibold text-sm tracking-wide"
-      >
-        Get Directions
-      </a>
 
     </main>
   );
