@@ -96,7 +96,7 @@ export default function Home() {
 
         <div className="w-full rounded-xl overflow-hidden max-h-96">
           <Image
-            src="/board.jpeg"
+            src="/board.jpg"
             alt="Our customer review board"
             width={800}
             height={600}
