@@ -11,7 +11,6 @@ const navLinks = [
   { label: "About Us", href: "/about" },
   { label: "Location", href: "/location" },
   { label: "Follow Us", href: "/follow-us" },
-  { label: "Contact", href: "/contact" },
 ];
 
 export default function Nav() {

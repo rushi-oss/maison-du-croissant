@@ -54,8 +54,10 @@ export default function LocationPage() {
           </div>
           <div>
             <p className="text-xs font-semibold tracking-widest uppercase text-[#C4973B] mb-1">Opening Hours</p>
-            <p className="text-[#540244] font-medium">Monday – Sunday</p>
-            <p className="text-[#c9a88a] text-sm">09:00 – 17:30</p>
+            <p className="text-[#540244] font-medium">Monday – Saturday</p>
+            <p className="text-[#c9a88a] text-sm mb-1">09:00 – 17:30</p>
+            <p className="text-[#540244] font-medium">Sunday</p>
+            <p className="text-[#c9a88a] text-sm">09:00 – 13:00</p>
           </div>
         </div>
 

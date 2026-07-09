@@ -88,6 +88,10 @@ export default async function MenuPage() {
           Choose your croissant &amp; filling
         </p>
 
+        <p className="text-base font-semibold text-[#c9a88a] text-center mb-6">
+          + Rs 5 for takeaway packaging
+        </p>
+
         {savoryItems.length > 0 && (
           <div className="mb-8">
             <h3 className={`${playfair.className} italic text-xl text-[#540244] pb-3 border-b border-[#e0d5c5] mb-1`}>
@@ -109,10 +113,6 @@ export default async function MenuPage() {
             ))}
           </div>
         )}
-
-        <p className="text-xs text-[#c9a88a] text-center mt-6">
-          + Rs 5 for takeaway packaging
-        </p>
       </section>
 
       {/* ── DRINKS ── */}

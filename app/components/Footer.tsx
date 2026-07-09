@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 export default function Footer() {
   return (
     <footer className="bg-[#540244] mt-10 px-4 pt-8 pb-20 md:pb-8 text-center">
@@ -8,11 +6,26 @@ export default function Footer() {
       </p>
       <p className="text-[#c9a88a] text-xs leading-7 mb-5">
         Ave Pelicans, Sodnac, Mauritius<br />
-        Mon – Sun · 09:00 – 17:30
+        Mon – Sat · 09:00 – 17:30<br />
+        Sun · 09:00 – 13:00
       </p>
 
       {/* Social links */}
       <div className="flex items-center justify-center gap-5">
+
+        {/* Location */}
+        <a
+          href="https://www.google.com/maps/dir/?api=1&destination=-20.2684055,57.4870718&hl=en"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Get directions on Google Maps"
+          className="text-[#c9a88a] hover:text-[#C4973B] transition-colors"
+        >
+          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+            <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+          </svg>
+        </a>
 
         {/* Instagram */}
         <a

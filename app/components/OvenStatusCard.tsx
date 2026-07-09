@@ -39,13 +39,23 @@ export default function OvenStatusCard() {
       <p className="text-[#c9a88a] text-sm mb-3">
         Watch our oven in real time and pre-order accordingly
       </p>
+      {isBaking && (
+        <div className="flex items-center gap-2 mb-2">
+          <span className="w-3 h-3 rounded-full bg-[#C4973B] animate-pulse" />
+          <p className="text-[#C4973B] text-3xl sm:text-4xl font-extrabold uppercase tracking-wide">
+            Oven is on
+          </p>
+        </div>
+      )}
       <div className="flex items-center gap-3">
-        <div
-          className="w-3 h-3 rounded-full"
-          style={{ backgroundColor: isBaking ? '#C4973B' : '#6b5044' }}
-        />
+        {!isBaking && (
+          <div
+            className="w-3 h-3 rounded-full"
+            style={{ backgroundColor: oven === null ? '#6b5044' : '#6b5044' }}
+          />
+        )}
         <div>
-          <p className="text-[#FDF6EC] font-serif italic text-xl">
+          <p className={isBaking ? 'text-[#FDF6EC] font-serif italic text-2xl' : 'text-[#FDF6EC] font-serif italic text-xl'}>
             {oven === null
               ? 'Checking oven…'
               : isBaking

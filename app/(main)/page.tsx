@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import OvenStatusCard from "../components/OvenStatusCard";
 
 const reviewNotes = [
@@ -36,9 +35,12 @@ export default function Home() {
         </div>
 
         {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-bounce">
+        <div className="absolute bottom-36 sm:bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1 animate-bounce">
+          <p className="text-[#FDF6EC]/80 text-xs font-medium tracking-widest uppercase">
+            Scroll to explore
+          </p>
           <svg
-            className="w-6 h-6 text-[#FDF6EC]/70"
+            className="w-5 h-5 text-[#FDF6EC]/70"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -102,16 +104,6 @@ export default function Home() {
           />
         </div>
       </section>
-
-      {/* STICKY BOTTOM BAR — mobile only */}
-      <div className="sticky bottom-0 bg-[#FDF6EC] border-t border-[#e0d5c5] px-4 py-3 md:hidden">
-        <Link
-          href="/preorder"
-          className="block w-full bg-[#540244] text-[#FDF6EC] text-center py-3 rounded-full font-semibold text-sm tracking-wide"
-        >
-          Pre-order now — skip the wait
-        </Link>
-      </div>
 
     </main>
   );

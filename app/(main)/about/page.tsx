@@ -23,15 +23,6 @@ export default function AboutPage() {
 
         <div>
           <p className="text-xs font-semibold tracking-widest uppercase text-[#C4973B] mb-2">
-            Why We Started
-          </p>
-          <p className="text-[#540244] leading-relaxed">
-            We wanted something of our own. Not a franchise, not someone else&apos;s idea — ours. We also noticed there wasn&apos;t much variety in pastries around here, so we figured, why not bring something different to the table.
-          </p>
-        </div>
-
-        <div>
-          <p className="text-xs font-semibold tracking-widest uppercase text-[#C4973B] mb-2">
             How We Built It
           </p>
           <p className="text-[#540244] leading-relaxed mb-2">
@@ -41,10 +32,19 @@ export default function AboutPage() {
             href="https://vt.tiktok.com/ZSCm6rdMa/"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block bg-[#C4973B] text-[#540244] font-semibold text-lg px-4 py-2 rounded-full hover:bg-[#540244] hover:text-[#FDF6EC] transition-colors"
+            className="inline-block bg-[#C4973B] text-[#540244] font-semibold text-xl px-6 py-3 rounded-full hover:bg-[#540244] hover:text-[#FDF6EC] transition-colors"
           >
             Watch us build it →
           </a>
+        </div>
+
+        <div>
+          <p className="text-xs font-semibold tracking-widest uppercase text-[#C4973B] mb-2">
+            Why We Started
+          </p>
+          <p className="text-[#540244] leading-relaxed">
+            We wanted something of our own. Not a franchise, not someone else&apos;s idea — ours. We also noticed there wasn&apos;t much variety in pastries around here, so we figured, why not bring something different to the table.
+          </p>
         </div>
 
         <div>
