@@ -20,7 +20,7 @@ export default function Home() {
       <section className="relative h-screen flex flex-col items-center justify-center px-4 overflow-hidden">
 
         <Image
-          src="/hero.jpeg"
+          src="/hero2.jpeg"
           alt="Maison du Croissant"
           fill
           className="object-cover object-[40%_50%]"
