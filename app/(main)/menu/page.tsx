@@ -17,15 +17,15 @@ type DrinkItem = {
 type MenuItem = {
   _id: string
   name: string
-  category: 'savory' | 'sweet'
+  category: 'savory' | 'sweet' | 'puff'
   price: number
   description: string
-  dietary: ('veg' | 'egg')[]
+  dietary?: ('veg' | 'egg')[]
   bestSeller: boolean
 }
 
 function MenuItemRow({ item }: { item: MenuItem }) {
-  const icons = item.dietary.map((d) => (d === 'veg' ? '🌱' : '🥚')).join(' ')
+  const icons = (item.dietary ?? []).map((d) => (d === 'veg' ? '🌱' : '🥚')).join(' ')
   return (
     <div className="py-4 border-b border-[#e0d5c5] last:border-0">
       <div className="flex items-start justify-between gap-3">
@@ -65,6 +65,7 @@ export default async function MenuPage() {
   ])
   const savoryItems = items.filter((i) => i.category === 'savory')
   const sweetItems = items.filter((i) => i.category === 'sweet')
+  const puffItems = items.filter((i) => i.category === 'puff')
 
   return (
     <main className="min-h-screen bg-[#FDF6EC] pt-36 pb-24 px-4 max-w-lg mx-auto">
@@ -114,6 +115,20 @@ export default async function MenuPage() {
           </div>
         )}
       </section>
+
+      {/* ── PUFF ── */}
+      {puffItems.length > 0 && (
+        <section className="mb-12">
+          <p className="text-[#C4973B] text-sm font-semibold tracking-widest uppercase mb-2">
+            Something different
+          </p>
+          <h2 className={`${playfair.className} text-2xl text-[#540244] mb-2`}>Puff</h2>
+          <div className="w-10 h-0.5 bg-[#C4973B] mb-8" />
+          {puffItems.map((item) => (
+            <MenuItemRow key={item._id} item={item} />
+          ))}
+        </section>
+      )}
 
       {/* ── DRINKS ── */}
       {drinks.length > 0 && (

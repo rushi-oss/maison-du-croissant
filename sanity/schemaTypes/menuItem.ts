@@ -19,6 +19,7 @@ export const menuItem = defineType({
         list: [
           { title: 'Savory Croissant', value: 'savory' },
           { title: 'Sweet Croissant', value: 'sweet' },
+          { title: 'Puff', value: 'puff' },
         ],
         layout: 'radio',
       },
@@ -47,7 +48,12 @@ export const menuItem = defineType({
         ],
         layout: 'grid',
       },
-      validation: (r) => r.required().min(1),
+      hidden: ({ document }) => document?.category === 'puff',
+      validation: (r) =>
+        r.custom((value, context) => {
+          if (context.document?.category === 'puff') return true
+          return value && value.length > 0 ? true : 'Required'
+        }),
     }),
     defineField({
       name: 'bestSeller',
