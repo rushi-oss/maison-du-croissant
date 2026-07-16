@@ -19,3 +19,10 @@ export const DRINK_ITEMS_QUERY = defineQuery(`
     price
   }
 `)
+
+export const REVIEW_NOTES_QUERY = defineQuery(`
+  *[_type == "reviewNote"] | order(order asc) {
+    _id,
+    "imageUrl": image.asset->url
+  }
+`)
