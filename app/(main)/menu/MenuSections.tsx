@@ -16,19 +16,14 @@ function MenuItemRow({ item }: { item: MenuItem }) {
   const icons = (item.dietary ?? []).map((d) => (d === 'veg' ? '🌱' : '🥚')).join(' ')
   return (
     <div className="py-4 border-b border-[#e0d5c5] last:border-0">
-      <div className="flex items-start justify-between gap-3">
-        <div className="flex items-center gap-2 flex-wrap">
-          <span className={`${playfair.className} font-semibold text-[#540244]`}>{item.name}</span>
-          <span className="text-sm leading-none">{icons}</span>
-          {item.bestSeller && (
-            <span className="text-[10px] font-semibold tracking-wide uppercase text-[#C4973B] border border-[#C4973B] rounded-full px-2 py-0.5 leading-none">
-              ⭐ Best Seller
-            </span>
-          )}
-        </div>
-        <span className="font-serif text-lg text-[#C4973B] whitespace-nowrap shrink-0">
-          Rs {item.price}
-        </span>
+      <div className="flex items-center gap-2 flex-wrap">
+        <span className={`${playfair.className} font-semibold text-[#540244]`}>{item.name}</span>
+        <span className="text-sm leading-none">{icons}</span>
+        {item.bestSeller && (
+          <span className="text-[10px] font-semibold tracking-wide uppercase text-[#C4973B] border border-[#C4973B] rounded-full px-2 py-0.5 leading-none">
+            ⭐ Best Seller
+          </span>
+        )}
       </div>
       {item.description && (
         <p className="text-sm text-[#c9a88a] mt-1 leading-relaxed">{item.description}</p>
@@ -39,9 +34,8 @@ function MenuItemRow({ item }: { item: MenuItem }) {
 
 function DrinkRow({ item }: { item: DrinkItem }) {
   return (
-    <div className="flex items-center justify-between py-3 border-b border-[#e0d5c5] last:border-0">
+    <div className="py-3 border-b border-[#e0d5c5] last:border-0">
       <span className="font-sans text-[#540244]">{item.name}</span>
-      <span className="font-serif text-lg text-[#C4973B]">Rs {item.price}</span>
     </div>
   )
 }

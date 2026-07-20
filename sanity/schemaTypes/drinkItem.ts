@@ -15,7 +15,8 @@ export const drinkItem = defineType({
       name: 'price',
       title: 'Price (Rs)',
       type: 'number',
-      validation: (r) => r.required().positive(),
+      description: 'Optional — only needed for pre-order. Not shown on the public menu.',
+      validation: (r) => r.positive(),
     }),
     defineField({
       name: 'available',
