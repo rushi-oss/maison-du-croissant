@@ -20,6 +20,7 @@ export const menuItem = defineType({
           { title: 'Savory Croissant', value: 'savory' },
           { title: 'Sweet Croissant', value: 'sweet' },
           { title: 'Puff', value: 'puff' },
+          { title: 'Croastie', value: 'croastie' },
         ],
         layout: 'radio',
       },
@@ -49,10 +50,10 @@ export const menuItem = defineType({
         ],
         layout: 'grid',
       },
-      hidden: ({ document }) => document?.category === 'puff',
+      hidden: ({ document }) => document?.category === 'puff' || document?.category === 'croastie',
       validation: (r) =>
         r.custom((value, context) => {
-          if (context.document?.category === 'puff') return true
+          if (context.document?.category === 'puff' || context.document?.category === 'croastie') return true
           return value && value.length > 0 ? true : 'Required'
         }),
     }),
@@ -60,6 +61,13 @@ export const menuItem = defineType({
       name: 'bestSeller',
       title: 'Best Seller',
       type: 'boolean',
+      initialValue: false,
+    }),
+    defineField({
+      name: 'isNew',
+      title: 'New',
+      type: 'boolean',
+      description: 'Shows a red "New" badge next to the item on the menu.',
       initialValue: false,
     }),
     defineField({

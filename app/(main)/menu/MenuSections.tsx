@@ -4,21 +4,24 @@ import { useState } from 'react'
 import { playfair } from './fonts'
 import type { MenuItem, DrinkItem } from './types'
 
-type Tab = 'croissants' | 'drinks' | 'puff'
+type Tab = 'croissants' | 'croastie' | 'drinks'
 
 const TABS: { id: Tab; label: string }[] = [
   { id: 'croissants', label: 'Our Croissants' },
+  { id: 'croastie', label: 'The Croastie' },
   { id: 'drinks', label: 'Drinks' },
-  { id: 'puff', label: 'Puff' },
 ]
 
 function MenuItemRow({ item }: { item: MenuItem }) {
-  const icons = (item.dietary ?? []).map((d) => (d === 'veg' ? '🌱' : '🥚')).join(' ')
   return (
     <div className="py-4 border-b border-[#e0d5c5] last:border-0">
       <div className="flex items-center gap-2 flex-wrap">
         <span className={`${playfair.className} font-semibold text-[#540244]`}>{item.name}</span>
-        <span className="text-sm leading-none">{icons}</span>
+        {item.isNew && (
+          <span className="text-[10px] font-bold tracking-wide uppercase text-white bg-[#D7262E] rounded-full px-2 py-0.5 leading-none">
+            New
+          </span>
+        )}
         {item.bestSeller && (
           <span className="text-[10px] font-semibold tracking-wide uppercase text-[#C4973B] border border-[#C4973B] rounded-full px-2 py-0.5 leading-none">
             ⭐ Best Seller
@@ -45,7 +48,7 @@ export function MenuSections({ items, drinks }: { items: MenuItem[]; drinks: Dri
 
   const savoryItems = items.filter((i) => i.category === 'savory')
   const sweetItems = items.filter((i) => i.category === 'sweet')
-  const puffItems = items.filter((i) => i.category === 'puff')
+  const croastieItems = items.filter((i) => i.category === 'croastie')
 
   return (
     <div>
@@ -70,15 +73,7 @@ export function MenuSections({ items, drinks }: { items: MenuItem[]; drinks: Dri
       {/* ── CROISSANTS ── */}
       {activeTab === 'croissants' && (
         <section className="mb-12">
-          <h2 className={`${playfair.className} text-2xl text-[#540244] mb-3`}>Our Croissants</h2>
-
-          <div className="flex flex-col gap-1 mb-2 text-sm text-[#c9a88a]">
-            <span>🌱 Veg Croissant — The Original One</span>
-            <span>🥚 Egg-Washed Croissant — The Better Version</span>
-          </div>
-          <p className="text-[10px] font-semibold tracking-widest uppercase text-[#c9a88a] mb-8">
-            Choose your croissant &amp; filling
-          </p>
+          <h2 className={`${playfair.className} text-2xl text-[#540244] mb-8`}>Our Croissants</h2>
 
           <p className="text-base font-semibold text-[#c9a88a] text-center mb-6">
             + Rs 5 for takeaway packaging
@@ -108,16 +103,16 @@ export function MenuSections({ items, drinks }: { items: MenuItem[]; drinks: Dri
         </section>
       )}
 
-      {/* ── PUFF ── */}
-      {activeTab === 'puff' && (
+      {/* ── CROASTIE ── */}
+      {activeTab === 'croastie' && (
         <section className="mb-12">
           <p className="text-[#C4973B] text-sm font-semibold tracking-widest uppercase mb-2">
-            Something different
+            The Croissant toast
           </p>
-          <h2 className={`${playfair.className} text-2xl text-[#540244] mb-2`}>Puff</h2>
+          <h2 className={`${playfair.className} text-2xl text-[#540244] mb-2`}>The Croastie</h2>
           <div className="w-10 h-0.5 bg-[#C4973B] mb-8" />
-          {puffItems.length > 0 ? (
-            puffItems.map((item) => <MenuItemRow key={item._id} item={item} />)
+          {croastieItems.length > 0 ? (
+            croastieItems.map((item) => <MenuItemRow key={item._id} item={item} />)
           ) : (
             <p className="text-sm text-[#c9a88a]">Coming soon.</p>
           )}
@@ -137,6 +132,9 @@ export function MenuSections({ items, drinks }: { items: MenuItem[]; drinks: Dri
           ) : (
             <p className="text-sm text-[#c9a88a]">Coming soon.</p>
           )}
+          <div className="py-3 border-b border-[#e0d5c5] last:border-0">
+            <span className="font-sans text-[#540244]">Cold no sugar fruit juices available</span>
+          </div>
         </section>
       )}
     </div>

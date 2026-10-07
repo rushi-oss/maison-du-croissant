@@ -8,7 +8,8 @@ export const MENU_ITEMS_QUERY = defineQuery(`
     price,
     description,
     dietary,
-    bestSeller
+    bestSeller,
+    isNew
   }
 `)
 

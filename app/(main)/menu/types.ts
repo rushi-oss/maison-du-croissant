@@ -7,9 +7,10 @@ export type DrinkItem = {
 export type MenuItem = {
   _id: string
   name: string
-  category: 'savory' | 'sweet' | 'puff'
+  category: 'savory' | 'sweet' | 'puff' | 'croastie'
   price?: number
   description: string
   dietary?: ('veg' | 'egg')[]
   bestSeller: boolean
+  isNew?: boolean
 }
