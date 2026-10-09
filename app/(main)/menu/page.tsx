@@ -1,8 +1,20 @@
+import type { Metadata } from 'next'
 import { client } from '../../../sanity/lib/client'
 import { MENU_ITEMS_QUERY, DRINK_ITEMS_QUERY } from '../../../sanity/lib/queries'
-import { playfair } from './fonts'
-import { MenuSections } from './MenuSections'
-import type { MenuItem, DrinkItem } from './types'
+import MenuList from '../../components/MenuList'
+import type { MenuItem, DrinkItem } from '../../lib/types'
+import { pageMetadata } from '../../lib/metadata'
+
+// Studio edits show up within a minute, without a redeploy.
+export const revalidate = 60
+
+export const metadata: Metadata = pageMetadata({
+  title: 'Menu',
+  description:
+    'Savory and sweet filled croissants, the croastie (the croissant toast!), coffee and cold drinks at Maison du Croissant, Sodnac.',
+  path: '/menu',
+  image: { url: '/hero.jpeg', width: 1270, height: 1600, alt: 'A filled croissant on a pink backdrop' },
+})
 
 export default async function MenuPage() {
   const [items, drinks]: [MenuItem[], DrinkItem[]] = await Promise.all([
@@ -11,17 +23,11 @@ export default async function MenuPage() {
   ])
 
   return (
-    <main className="min-h-screen bg-[#FDF6EC] pt-36 pb-24 px-4 max-w-lg mx-auto">
-
-      {/* Page header */}
-      <p className="text-[#C4973B] text-sm font-semibold tracking-widest uppercase mb-2">
-        Maison du Croissant
-      </p>
-      <h1 className={`${playfair.className} text-4xl text-[#540244] mb-2`}>Our Menu</h1>
-      <div className="w-10 h-0.5 bg-[#C4973B] mb-10" />
-
-      <MenuSections items={items} drinks={drinks} />
-
+    <main className="wrap">
+      <section className="menu is-page">
+        <h1 className="big menu-title">the menu.</h1>
+        <MenuList items={items} drinks={drinks} />
+      </section>
     </main>
   )
 }

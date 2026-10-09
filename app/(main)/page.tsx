@@ -1,79 +1,81 @@
 import Image from "next/image";
-import OvenStatusCard from "../components/OvenStatusCard";
-import HeroParallax from "../components/HeroParallax";
+import Hero from "../components/Hero";
+import MenuList from "../components/MenuList";
+import NewItemsPill from "../components/NewItemsPill";
+import Visit from "../components/Visit";
 import { client } from "../../sanity/lib/client";
-import { REVIEW_NOTES_QUERY } from "../../sanity/lib/queries";
+import { DRINK_ITEMS_QUERY, MENU_ITEMS_QUERY, REVIEW_NOTES_QUERY } from "../../sanity/lib/queries";
+import type { DrinkItem, MenuItem, ReviewNote } from "../lib/types";
+import { BUILD_VIDEO_URL, GOOGLE_REVIEW_URL } from "../lib/site";
+import { pageMetadata, SITE_DESCRIPTION } from "../lib/metadata";
 
-type ReviewNote = {
-  _id: string;
-  imageUrl: string;
-};
+// Studio edits show up within a minute, without a redeploy.
+export const revalidate = 60;
 
-// Cycles through a few tilt angles so the notes still look hand-scattered.
-const ROTATIONS = ["-2deg", "1.5deg", "-1deg", "2deg", "-1.5deg", "1deg"];
+export const metadata = pageMetadata({
+  description: SITE_DESCRIPTION,
+  path: "/",
+});
 
 export default async function Home() {
-  const reviewNotes: ReviewNote[] = await client.fetch(REVIEW_NOTES_QUERY);
+  const [items, drinks, notes]: [MenuItem[], DrinkItem[], ReviewNote[]] = await Promise.all([
+    client.fetch(MENU_ITEMS_QUERY),
+    client.fetch(DRINK_ITEMS_QUERY),
+    client.fetch(REVIEW_NOTES_QUERY),
+  ]);
+  const noteUrls = notes.map((n) => n.imageUrl).filter(Boolean);
 
   return (
-    <main className="min-h-screen bg-[#FDF6EC]">
+    <>
+      <main>
+        <Hero notes={noteUrls} />
 
-      {/* HERO SECTION */}
-      <HeroParallax />
+        <div className="wrap">
+          <section className="menu" id="menu">
+            <h2 className="big menu-title">the menu.</h2>
+            <MenuList items={items} drinks={drinks} />
+          </section>
 
-      {/* LIVE OVEN STATUS */}
-      <section className="px-4 py-6">
-        <OvenStatusCard />
-      </section>
+          <section className="board">
+            <h2 className="big">the board.</h2>
+            <Image
+              className="board-full"
+              src="/board.jpg"
+              alt="The whole review board by the counter, covered edge to edge in customer notes"
+              width={1020}
+              height={1280}
+              sizes="(min-width: 600px) 560px, 100vw"
+            />
+            <div className="notes">
+              {noteUrls.slice(0, 3).map((url) => (
+                <div className="round" key={url}>
+                  <Image src={url} alt="Customer note from the board" fill sizes="140px" />
+                </div>
+              ))}
+            </div>
+            <p className="desc" style={{ fontStyle: "normal" }}>by the counter. leave yours next time.</p>
+            <a className="link" href={GOOGLE_REVIEW_URL} target="_blank" rel="noopener noreferrer">
+              or leave us a Google review →
+            </a>
+          </section>
 
-      {/* CUSTOMER REVIEWS SECTION */}
-      <section className="py-10 px-4">
-        <p className="text-[#C4973B] text-lg font-semibold tracking-widest uppercase mb-4">
-          What our customers say
-        </p>
-        <div className="w-10 h-0.5 bg-[#C4973B] mb-6" />
-        <p className="text-[#540244] text-base text-center mb-6">
-          Little notes stuck by our customers on the review board.
-        </p>
+          <section className="story" id="story">
+            <h2 className="big">our story.</h2>
+            <p>
+              A small family, and now Paro too. We built this place ourselves: painted the walls, wired the
+              lights, and messed up a lot of croissant batches until they came out right.
+            </p>
+            <p>Not a franchise, not someone else&apos;s idea. Ours, with pastries you won&apos;t find anywhere nearby.</p>
+            <a className="link" href={BUILD_VIDEO_URL} target="_blank" rel="noopener noreferrer">
+              watch us build it →
+            </a>
+          </section>
 
-        {/* Scrollable sticky notes with right-edge fade hint */}
-        <div className="relative">
-          <div className="flex gap-4 overflow-x-auto pb-3 snap-x snap-mandatory">
-            {reviewNotes.map((note, i) => (
-              <div
-                key={note._id}
-                className="flex-shrink-0 snap-center w-56 h-56 rounded-lg overflow-hidden shadow-md"
-                style={{ transform: `rotate(${ROTATIONS[i % ROTATIONS.length]})` }}
-              >
-                <Image
-                  src={note.imageUrl}
-                  alt={`Customer review ${i + 1}`}
-                  width={224}
-                  height={224}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            ))}
-          </div>
-          {/* Gradient fade showing there's more to scroll */}
-          <div className="absolute right-0 top-0 bottom-3 w-16 bg-gradient-to-l from-[#FDF6EC] to-transparent pointer-events-none" />
+          <Visit />
         </div>
+      </main>
 
-        <p className="text-[#540244] text-lg italic text-center mt-6 mb-4">
-          Wait, there&apos;s a whole board of it... 🤍
-        </p>
-
-        <div className="w-full rounded-xl overflow-hidden max-h-96">
-          <Image
-            src="/board.jpg"
-            alt="Our customer review board"
-            width={800}
-            height={600}
-            className="w-full h-auto"
-          />
-        </div>
-      </section>
-
-    </main>
+      <NewItemsPill items={items.filter((i) => i.isNew)} />
+    </>
   );
 }

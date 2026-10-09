@@ -30,8 +30,24 @@ export const menuItem = defineType({
       name: 'price',
       title: 'Price (Rs)',
       type: 'number',
-      description: 'Optional — only needed for pre-order. Not shown on the public menu.',
+      description: 'Never shown on the site. Used to price pre-orders and personal bulk orders.',
       validation: (r) => r.positive(),
+    }),
+    defineField({
+      name: 'b2bPrice',
+      title: 'B2B Price (Rs)',
+      type: 'number',
+      description:
+        'Your price for business bulk orders. Only appears in the order email, never on the site. Leave empty to use the menu price.',
+      hidden: ({ document }) => document?.category === 'puff',
+      validation: (r) => r.positive(),
+    }),
+    defineField({
+      name: 'photo',
+      title: 'Photo',
+      type: 'image',
+      description: 'Shown in the "new" slideshow on the homepage when the item is marked New.',
+      options: { hotspot: true },
     }),
     defineField({
       name: 'description',

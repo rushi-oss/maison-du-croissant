@@ -10,6 +10,13 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  // Retired pages forward to where their content lives now, so old links and search results still land.
+  async redirects() {
+    return [
+      { source: '/about', destination: '/#story', permanent: true },
+      { source: '/follow-us', destination: '/', permanent: true },
+    ];
+  },
 };
 
 export default nextConfig;
