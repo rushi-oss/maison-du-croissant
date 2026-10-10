@@ -6,9 +6,9 @@ const GROUPS: { category: MenuCategory; title: string; sub?: string }[] = [
   { category: 'croastie', title: 'the croastie.', sub: 'the croissant toast!' },
 ]
 
-function Dish({ item }: { item: MenuItem }) {
+function Dish({ item, index }: { item: MenuItem; index: number }) {
   return (
-    <li>
+    <li style={{ '--i': index } as React.CSSProperties}>
       <span className="dish">
         {item.name}
         {item.isNew && <span className="tag">new</span>}
@@ -27,26 +27,26 @@ export default function MenuList({ items, drinks }: { items: MenuItem[]; drinks:
         const groupItems = items.filter((i) => i.category === group.category)
         if (!groupItems.length) return null
         return (
-          <div key={group.category}>
+          <div key={group.category} data-reveal>
             <h3 className="big">{group.title}</h3>
             {group.sub && <p className="sub">{group.sub}</p>}
             <ul>
-              {groupItems.map((item) => (
-                <Dish key={item._id} item={item} />
+              {groupItems.map((item, i) => (
+                <Dish key={item._id} item={item} index={i} />
               ))}
             </ul>
           </div>
         )
       })}
-      <div>
+      <div data-reveal>
         <h3 className="big">the drinks.</h3>
         <ul>
-          {drinks.map((drink) => (
-            <li key={drink._id}>
+          {drinks.map((drink, i) => (
+            <li key={drink._id} style={{ '--i': i } as React.CSSProperties}>
               <span className="dish">{drink.name}</span>
             </li>
           ))}
-          <li>
+          <li style={{ '--i': drinks.length } as React.CSSProperties}>
             <span className="desc">Cold no sugar fruit juices available</span>
           </li>
         </ul>

@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { MAPS_URL } from '../lib/site';
 import { useClientValue } from '../lib/useClientValue';
+import CroissantButton from './CroissantButton';
 
 // Real photos only. A slide with no src shows a labelled placeholder until its photo arrives.
 const SLIDES: { src: string | null; alt: string }[] = [
@@ -72,11 +73,18 @@ export default function Hero({ notes }: { notes: string[] }) {
         )}
 
         <div className="hero-text">
-          <h1 className="big">croissants, filled.</h1>
-          <span className="caps">Sodnac · Mauritius · from 9 am</span>
+          {/* Each line slides up out of its own mask, one after the other. */}
+          <h1 className="big">
+            {['croissants,', 'filled.'].map((line, i) => (
+              <span className="rise-line" key={line}>
+                <span style={{ '--i': i } as React.CSSProperties}>{line}</span>
+              </span>
+            ))}
+          </h1>
+          <span className="caps hero-sub">Sodnac · Mauritius · from 9 am</span>
           <div className="hero-actions">
-            <a className="link" href="#menu">see the menu →</a>
-            <a className="link" href={MAPS_URL} target="_blank" rel="noopener noreferrer">directions →</a>
+            <CroissantButton href="#menu">see the menu</CroissantButton>
+            <CroissantButton href={MAPS_URL} variant="line">directions</CroissantButton>
           </div>
         </div>
       </div>

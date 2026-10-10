@@ -19,6 +19,18 @@ export default function NewItemsPill({ items }: { items: MenuItem[] }) {
   const touchStartX = useRef<number | null>(null);
 
   const count = items.length;
+  // Stays tucked away until the hero's buttons have scrolled off, so it never covers them.
+  const [revealed, setRevealed] = useState(false);
+
+  useEffect(() => {
+    const heroActions = document.querySelector('.hero-actions');
+    if (!heroActions) return;
+    const io = new IntersectionObserver(([entry]) => {
+      setRevealed(!entry.isIntersecting && entry.boundingClientRect.top < 0);
+    });
+    io.observe(heroActions);
+    return () => io.disconnect();
+  }, []);
 
   useEffect(() => {
     if (count < 2 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -57,7 +69,7 @@ export default function NewItemsPill({ items }: { items: MenuItem[] }) {
 
   return (
     <>
-      <button className="new-pill" type="button" aria-haspopup="dialog" aria-label="See the new items" onClick={openShow}>
+      <button className={`new-pill${revealed ? '' : ' is-tucked'}`} type="button" aria-haspopup="dialog" aria-label="See the new items" onClick={openShow} tabIndex={revealed ? 0 : -1}>
         <span className="disc">new</span>
         <span className="text">
           <span className="label caps">

@@ -18,10 +18,16 @@
   --red: #D7262E;
   --rule: #EFE4EC;
   --tape: rgba(196, 151, 59, 0.38);
+  --paper: #FFFFFF; /* the surface a section sits on: white, or plum on .band-plum */
+  --golden: #F2B544;
+  --pink: #F6C9DA; /* from the Pizza Puffie photo: the strip and the solid buttons' edge */
+  /* Entrance animations wait for the opening logo curtain to lift; no wait once it's been seen. */
+  --intro-delay: 1.5s;
   --display: var(--font-bricolage), 'DM Sans', system-ui, sans-serif;
   --body: var(--font-dm-sans), system-ui, sans-serif;
 }
 
+html.intro-seen { --intro-delay: 0s; }
 [hidden] { display: none !important; }
 body {
   margin: 0;
@@ -254,6 +260,11 @@ dialog.show::backdrop { background: rgba(40, 10, 32, 0.55); }
 .page-head { display: flex; flex-direction: column; gap: 14px; }
 .page-head h1 { font-size: clamp(56px, 14vw, 104px); line-height: 0.9; }
 .page-head .tag { align-self: flex-start; }
+.box-line {
+  align-self: flex-start; margin: 0;
+  background: var(--red); color: #FFFFFF; padding: 8px 14px; border-radius: 10px; transform: rotate(-1.5deg);
+  font-family: var(--display); font-weight: 800; font-size: 16px; line-height: 1.25; letter-spacing: -0.01em;
+}
 .steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
 .steps li { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 16px; align-items: start; padding-block: 18px; border-top: 1px solid var(--rule); }
 .steps li:last-child { border-bottom: 1px solid var(--rule); }
@@ -332,6 +343,116 @@ dialog.show::backdrop { background: rgba(40, 10, 32, 0.55); }
   .contact a { width: 46px; height: 46px; }
 }
 
+
+/* ---------- homepage bands: white, plum, white, plum ---------- */
+.band > .wrap > section { border-top: 0; padding-top: 64px; }
+.band-plum {
+  background: #540244; color: #FFFFFF;
+  --ink: #FFFFFF; --paper: #540244;
+  --muted: rgba(255, 255, 255, 0.74); --rule: rgba(255, 255, 255, 0.16);
+}
+.story-text { display: flex; flex-direction: column; gap: 16px; }
+main { overflow-x: clip; }
+
+/* ---------- croissant buttons ---------- */
+.cbtn {
+  --btn-bg: var(--ink); --btn-fg: var(--paper); --btn-shadow: var(--pink);
+  display: inline-flex; align-items: center; gap: 10px;
+  min-height: 54px; padding: 0 22px 0 14px;
+  border: 2px solid var(--ink); border-radius: 999px;
+  background: var(--btn-bg); color: var(--btn-fg);
+  font-family: var(--display); font-weight: 700; font-size: 16px; text-decoration: none; white-space: nowrap;
+  box-shadow: 0 5px 0 var(--btn-shadow);
+  transition: transform 0.2s cubic-bezier(.3, 1.6, .5, 1), box-shadow 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.cbtn-line { --btn-bg: var(--paper); --btn-fg: var(--ink); --btn-shadow: var(--ink); }
+button.cbtn { align-self: flex-start; cursor: pointer; font-size: 17px; }
+.cbtn:disabled { opacity: 0.6; cursor: progress; }
+.cbtn:hover { transform: translateY(-2px); box-shadow: 0 7px 0 var(--btn-shadow); }
+.cbtn:active { transform: translateY(4px); box-shadow: 0 1px 0 var(--btn-shadow); transition-duration: 0.06s; }
+.cbtn-ico { width: 36px; height: auto; flex-shrink: 0; color: var(--golden); overflow: visible; transition: transform 0.35s cubic-bezier(.3, 1.6, .5, 1); }
+.cbtn:hover .cbtn-ico { transform: rotate(-14deg) scale(1.12); }
+.cbtn-arrow { transition: transform 0.25s ease; }
+.cbtn:hover .cbtn-arrow { transform: translateX(4px); }
+/* Each piece puffs from its own centre (set inline), measured in the icon's own coordinates. */
+.croissant .seg { transform-box: view-box; }
+/* The segments puff up one after another, end to end. */
+.cbtn:hover .seg, .cbtn:focus-visible .seg, .cbtn:active .seg { animation: puff 0.55s ease; animation-delay: calc(var(--s) * 0.07s); }
+/* The hero's main button puffs once by itself, to catch the eye on phones too. */
+.hero-actions .cbtn-solid .seg { animation: puff 0.55s ease calc(var(--intro-delay) + 1.3s + var(--s) * 0.07s); }
+@keyframes puff { 40% { transform: scale(1.2); } }
+.hero-actions { gap: 16px 14px; padding-top: 6px; }
+
+/* ---------- opening curtain: logo pops, line slides up, curtain lifts ---------- */
+.intro {
+  position: fixed; inset: 0; z-index: 200;
+  background: #540244; display: grid; place-items: center;
+  animation: curtain 0.8s cubic-bezier(.76, 0, .24, 1) 1.35s forwards;
+}
+html.intro-seen .intro { display: none; }
+.intro-inner { display: flex; flex-direction: column; align-items: center; gap: 18px; }
+.intro-logo {
+  width: 140px; height: 140px; border-radius: 50%;
+  animation: logo-in 1s cubic-bezier(.3, 1.5, .5, 1) 0.1s backwards, ring 1s ease-out 0.75s;
+}
+.intro-line { display: block; overflow: hidden; color: #FFFFFF; }
+.intro-line span { display: inline-block; animation: rise 0.7s cubic-bezier(.2, .8, .2, 1) 0.6s backwards; }
+@keyframes logo-in { from { transform: scale(0) rotate(-200deg); opacity: 0; } }
+@keyframes ring { from { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.5); } to { box-shadow: 0 0 0 48px rgba(255, 255, 255, 0); } }
+@keyframes curtain { to { transform: translateY(-100%); visibility: hidden; } }
+@keyframes rise { from { transform: translateY(105%); } }
+@keyframes fade-up { from { opacity: 0; transform: translateY(18px); } }
+@keyframes drop { from { opacity: 0; transform: translateY(-16px); } }
+
+/* ---------- page entrance (after the curtain) ---------- */
+.brand { animation: logo-in 0.9s cubic-bezier(.3, 1.5, .5, 1) var(--intro-delay) backwards; }
+.brand img { transition: transform 0.5s cubic-bezier(.3, 1.6, .5, 1); }
+.brand:hover img { transform: rotate(-12deg) scale(1.08); }
+.nav-links a { animation: drop 0.6s cubic-bezier(.2, .8, .2, 1) backwards; animation-delay: calc(var(--intro-delay) + 0.15s + var(--i, 0) * 0.08s); }
+.rise-line { display: block; overflow: hidden; padding-bottom: 0.08em; margin-bottom: -0.08em; }
+.rise-line > span { display: inline-block; animation: rise 0.9s cubic-bezier(.2, .8, .2, 1) backwards; animation-delay: calc(var(--intro-delay) + 0.2s + var(--i, 0) * 0.13s); }
+.hero-sub { animation: fade-up 0.7s ease backwards calc(var(--intro-delay) + 0.5s); }
+.hero-actions { animation: fade-up 0.7s ease backwards calc(var(--intro-delay) + 0.65s); }
+.hero-photo { animation: photo-in 1s cubic-bezier(.3, 1.3, .5, 1) backwards var(--intro-delay); transition: transform 0.5s cubic-bezier(.3, 1.4, .5, 1); }
+.hero-photo:active { transform: scale(0.97); }
+@media (hover: hover) { .hero-photo:hover { transform: rotate(3deg) scale(1.02); } }
+@keyframes photo-in { from { opacity: 0; transform: scale(0.6) rotate(-14deg); } }
+.board-note { animation: note-drop 0.8s cubic-bezier(.3, 1.4, .5, 1) backwards calc(var(--intro-delay) + 0.9s); }
+@keyframes note-drop { from { opacity: 0; transform: translateY(-70px) rotate(-22deg); } }
+.new-pill { box-shadow: 0 0 0 2px #FFFFFF, 0 10px 28px rgba(84, 2, 68, 0.28); transition: transform 0.5s cubic-bezier(.3, 1.4, .5, 1), opacity 0.3s ease; }
+.new-pill.is-tucked { transform: translateY(calc(100% + 40px)); opacity: 0; pointer-events: none; }
+.contact a { animation: logo-in 0.6s cubic-bezier(.3, 1.5, .5, 1) backwards calc(var(--intro-delay) + 1.3s); }
+.contact .call { box-shadow: 0 0 0 2px #FFFFFF, 0 10px 28px rgba(84, 2, 68, 0.28); }
+
+/* ---------- scroll reveals ---------- */
+html.js [data-reveal] { opacity: 0; transform: translateY(32px); transition: opacity 0.7s ease, transform 0.9s cubic-bezier(.2, .8, .2, 1); }
+html.js [data-reveal="left"] { transform: translateX(-56px); }
+html.js [data-reveal].is-in { opacity: 1; transform: none; }
+html.js [data-reveal] li { opacity: 0; transform: translateY(12px); transition: opacity 0.5s ease, transform 0.6s cubic-bezier(.2, .8, .2, 1); transition-delay: calc(0.15s + var(--i, 0) * 0.06s); }
+html.js [data-reveal].is-in li { opacity: 1; transform: none; }
+html.js [data-reveal] .notes .round { transform: scale(0); transition: transform 0.6s cubic-bezier(.3, 1.6, .5, 1); transition-delay: calc(0.35s + var(--i, 0) * 0.12s); }
+html.js [data-reveal].is-in .notes .round { transform: none; }
+@media (hover: hover) {
+  .menu li .dish { transition: transform 0.25s ease; }
+  .menu li:hover .dish { transform: translateX(6px); }
+}
+
+/* ---------- ticker strip ---------- */
+/* Soft pink strip, plum names, red croissants. */
+.ticker { background: var(--pink); color: var(--ink); overflow: hidden; padding-block: 14px; --btn-bg: var(--pink); }
+.ticker-track { display: flex; width: max-content; animation: ticker 32s linear infinite; }
+.ticker-row { display: flex; flex-shrink: 0; }
+.ticker-item {
+  display: inline-flex; align-items: center; gap: 18px; padding-right: 18px;
+  font-family: var(--display); font-weight: 800; font-size: 22px; letter-spacing: -0.01em; white-space: nowrap;
+}
+.ticker-item svg { width: 34px; height: auto; color: var(--red); }
+@keyframes ticker { to { transform: translateX(-50%); } }
+
+/* Anyone who has asked their device for less motion gets the still version of everything. */
 @media (prefers-reduced-motion: reduce) {
-  .track, .new-pill .name, .hslide, .board-note { transition: none; }
+  .intro { display: none; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  html.js [data-reveal], html.js [data-reveal] li, html.js [data-reveal] .notes .round { opacity: 1; transform: none; }
 }

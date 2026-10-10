@@ -32,6 +32,11 @@ export const metadata: Metadata = {
   },
 };
 
+// Runs before the page paints: marks that JavaScript is on (for scroll reveals) and
+// skips the opening logo animation after the first page of a visit, or for anyone
+// who has asked their device for less motion.
+const BOOT_SCRIPT = `(function(){var d=document.documentElement;d.classList.add('js');try{if(sessionStorage.getItem('mdc-intro')||matchMedia('(prefers-reduced-motion: reduce)').matches){d.classList.add('intro-seen')}else{sessionStorage.setItem('mdc-intro','1')}}catch(e){d.classList.add('intro-seen')}})()`;
+
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
@@ -44,7 +49,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${bricolage.variable} ${dmSans.variable}`}>
+    // The boot script adds classes to <html> before React loads, hence suppressHydrationWarning.
+    <html lang="en" className={`${bricolage.variable} ${dmSans.variable}`} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: BOOT_SCRIPT }} />
+      </head>
       <body>
         {children}
         <Analytics />

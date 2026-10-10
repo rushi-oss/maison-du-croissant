@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, useTransition, type FormEvent } from 'react'
 import { CATEGORY_LABELS, type MenuCategory } from '../../lib/types'
 import { useClientValue } from '../../lib/useClientValue'
+import CroissantIcon from '../../components/CroissantIcon'
 import { sendBulkOrder } from './actions'
 
 export type BulkItem = { _id: string; name: string; category: MenuCategory }
@@ -158,7 +159,7 @@ export default function BulkOrderForm({ items }: { items: BulkItem[] }) {
       </fieldset>
 
       <fieldset>
-        <legend className="big">what you need.</legend>
+        <legend className="big">choose your fillings.</legend>
         <div className="field">
           <label htmlFor="b-search">Search the menu</label>
           <input
@@ -236,8 +237,9 @@ export default function BulkOrderForm({ items }: { items: BulkItem[] }) {
       )}
       <div className="send-row">
         <p>We only use your details to reply about this order.</p>
-        <button className="btn-primary" type="submit" disabled={pending}>
-          {pending ? 'sending…' : 'send order request'}
+        <button className="cbtn cbtn-solid" type="submit" disabled={pending}>
+          <CroissantIcon className="cbtn-ico" />
+          <span>{pending ? 'sending…' : 'send order request'}</span>
         </button>
       </div>
     </form>

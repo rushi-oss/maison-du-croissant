@@ -1,14 +1,17 @@
 import { HOURS, MAPS_URL, PHONE_DISPLAY, PHONE_TEL } from '../lib/site'
+import CroissantButton from './CroissantButton'
 
 // Address, phone, directions and hours. A section on the homepage, the main heading on /location.
 export default function Visit({ asPage = false }: { asPage?: boolean }) {
   const Heading = asPage ? 'h1' : 'h2'
   return (
-    <section className={`visit${asPage ? ' is-page' : ''}`} id="visit">
+    <section className={`visit${asPage ? ' is-page' : ''}`} id="visit" data-reveal>
       <div className="visit-place">
         <Heading className="big">ave pelicans, sodnac.</Heading>
         <a className="phone" href={PHONE_TEL}>{PHONE_DISPLAY}</a>
-        <a className="link" href={MAPS_URL} target="_blank" rel="noopener noreferrer">directions →</a>
+        <div>
+          <CroissantButton href={MAPS_URL}>directions</CroissantButton>
+        </div>
       </div>
       <div className="hours">
         {HOURS.map((row) => (
