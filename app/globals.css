@@ -354,6 +354,33 @@ dialog.show::backdrop { background: rgba(40, 10, 32, 0.55); }
 .story-text { display: flex; flex-direction: column; gap: 16px; }
 main { overflow-x: clip; }
 
+/* ---------- special-offer poster, taped to the top of the menu ---------- */
+.poster {
+  --ink: #540244; --paper: #FFFFFF; --muted: #7A5C70; --rule: #EFE4EC;
+  position: relative; align-self: center; width: min(100%, 460px);
+  background: #FFFFFF; color: var(--ink);
+  padding: 30px 26px 26px; margin: 10px 0 8px;
+  display: flex; flex-direction: column; gap: 10px;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.28);
+  rotate: -1.5deg;
+}
+.poster::before {
+  content: ""; position: absolute; top: -12px; left: 50%;
+  width: 96px; height: 24px; transform: translateX(-50%) rotate(3deg);
+  background: rgba(246, 225, 170, 0.85); /* lighter tape, so it reads on the plum behind */
+}
+/* On the homepage it sits under the hero's buttons, before the pink strip. */
+.promo-wrap { padding-bottom: 56px; margin-top: -12px; }
+.promo-wrap .poster { margin: 0; }
+.poster .tag { align-self: flex-start; }
+.poster-kicker { margin: 4px 0 0; color: var(--red); }
+.poster h2 { font-size: clamp(34px, 9vw, 46px); line-height: 0.95; }
+.poster-text { margin: 0; color: var(--muted); font-size: 16px; }
+.poster-offers { display: flex; flex-wrap: wrap; gap: 14px 26px; padding-top: 12px; margin-top: 4px; border-top: 2px dashed var(--rule); }
+.poster-offers div { display: flex; flex-direction: column; }
+.poster-price { font-family: var(--display); font-weight: 800; font-size: 34px; line-height: 1; color: var(--red); letter-spacing: -0.02em; }
+.poster-label { font-size: 13px; color: var(--muted); }
+
 /* ---------- croissant buttons ---------- */
 .cbtn {
   --btn-bg: var(--ink); --btn-fg: var(--paper); --btn-shadow: var(--pink);
@@ -371,13 +398,16 @@ button.cbtn { align-self: flex-start; cursor: pointer; font-size: 17px; }
 .cbtn:disabled { opacity: 0.6; cursor: progress; }
 .cbtn:hover { transform: translateY(-2px); box-shadow: 0 7px 0 var(--btn-shadow); }
 .cbtn:active { transform: translateY(4px); box-shadow: 0 1px 0 var(--btn-shadow); transition-duration: 0.06s; }
-.cbtn-ico { width: 40px; height: auto; flex-shrink: 0; overflow: visible; margin-top: -6px; transition: transform 0.35s cubic-bezier(.3, 1.6, .5, 1); }
+.cbtn-ico { width: 40px; height: auto; flex-shrink: 0; overflow: visible; margin-top: -5px; transition: transform 0.35s cubic-bezier(.3, 1.6, .5, 1); }
 .cbtn:hover .cbtn-ico { transform: translateY(-1px) scale(1.06); }
 .cbtn-arrow { transition: transform 0.25s ease; }
 .cbtn:hover .cbtn-arrow { transform: translateX(4px); }
-/* The croissant: golden roll (red in the pink strip), darker folds. */
-.croissant .bun { fill: var(--croissant, var(--golden)); }
-.croissant .folds { stroke: #C77D1E; }
+/* The croissant: golden crescent, darker folds and underside, a soft shine on top.
+   The pink strip swaps in a red version through the same variables. */
+.croissant .bun { fill: var(--croissant, #E9A23B); }
+.croissant .folds { stroke: var(--croissant-fold, #B5681A); }
+.croissant .underside { stroke: var(--croissant-under, #C9822A); }
+.croissant .shine { stroke: var(--croissant-shine, #F8D58E); }
 /* Steam rises while the button is hovered or pressed, and keeps rising gently on the hero's
    main button so phones (no hover) see it too. Hidden otherwise. */
 .croissant .steam path { opacity: 0; }
@@ -453,8 +483,7 @@ html.js [data-reveal].is-in .notes .round { transform: none; }
   display: inline-flex; align-items: center; gap: 18px; padding-right: 18px;
   font-family: var(--display); font-weight: 800; font-size: 22px; letter-spacing: -0.01em; white-space: nowrap;
 }
-.ticker-item svg { width: 36px; height: auto; --croissant: var(--red); --golden: var(--red); }
-.ticker-item .folds { stroke: #9E1A20; }
+.ticker-item svg { width: 36px; height: auto; --croissant: var(--red); --croissant-fold: #9E1A20; --croissant-under: #B51E25; --croissant-shine: #F28A8F; }
 @keyframes ticker { to { transform: translateX(-50%); } }
 
 /* Anyone who has asked their device for less motion gets the still version of everything. */

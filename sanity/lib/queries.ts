@@ -21,6 +21,17 @@ export const DRINK_ITEMS_QUERY = defineQuery(`
   }
 `)
 
+// The newest special that's switched on, if any.
+export const PROMO_QUERY = defineQuery(`
+  *[_type == "promo" && active == true] | order(_updatedAt desc)[0] {
+    tag,
+    kicker,
+    headline,
+    text,
+    offers[] { _key, price, label }
+  }
+`)
+
 export const REVIEW_NOTES_QUERY = defineQuery(`
   *[_type == "reviewNote"] | order(order asc) {
     _id,
