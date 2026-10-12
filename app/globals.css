@@ -369,9 +369,6 @@ main { overflow-x: clip; }
   width: 96px; height: 24px; transform: translateX(-50%) rotate(3deg);
   background: rgba(246, 225, 170, 0.85); /* lighter tape, so it reads on the plum behind */
 }
-/* On the homepage it sits under the hero's buttons, before the pink strip. */
-.promo-wrap { padding-bottom: 56px; margin-top: -12px; }
-.promo-wrap .poster { margin: 0; }
 .poster .tag { align-self: flex-start; }
 .poster-kicker { margin: 4px 0 0; color: var(--red); }
 .poster h2 { font-size: clamp(34px, 9vw, 46px); line-height: 0.95; }
@@ -380,6 +377,37 @@ main { overflow-x: clip; }
 .poster-offers div { display: flex; flex-direction: column; }
 .poster-price { font-family: var(--display); font-weight: 800; font-size: 34px; line-height: 1; color: var(--red); letter-spacing: -0.02em; }
 .poster-label { font-size: 13px; color: var(--muted); }
+/* Slim version on the menu page. */
+.poster.is-compact { width: min(100%, 420px); align-self: flex-start; padding: 22px 20px 18px; gap: 6px; rotate: -1deg; }
+.poster.is-compact h2 { font-size: clamp(26px, 7vw, 32px); }
+.poster.is-compact .poster-offers { padding-top: 8px; gap: 8px 22px; }
+.poster.is-compact .poster-price { font-size: 26px; }
+.menu-page .menu.is-page { padding-bottom: 72px; }
+/* Taped onto the hero photo in the board note's place, over the circle's bottom-left edge
+   so most of the photo still shows. A little bigger than the note, for a limited time. */
+.poster.is-hero {
+  position: absolute; z-index: 2; margin: 0;
+  left: 8px; top: calc(min(80vw, 420px) * 0.44); width: min(47vw, 182px);
+  padding: 16px 12px 11px; gap: 3px; rotate: -5deg;
+  animation: note-drop 0.8s cubic-bezier(.3, 1.4, .5, 1) backwards calc(var(--intro-delay) + 0.9s);
+}
+.poster.is-hero::before { width: 70px; height: 18px; top: -9px; }
+.poster.is-hero .tag { font-size: 9px; padding: 2px 9px 2px 5px; }
+.poster.is-hero .poster-kicker { font-size: 8px; letter-spacing: 0.12em; margin: 2px 0 0; }
+.poster.is-hero h2 { font-size: clamp(17px, 4.9vw, 21px); line-height: 0.95; }
+.poster.is-hero .poster-offers { padding-top: 6px; margin-top: 2px; gap: 2px 12px; border-top-width: 1.5px; }
+.poster.is-hero .poster-price { font-size: clamp(17px, 4.7vw, 20px); }
+.poster.is-hero .poster-label { font-size: 9.5px; line-height: 1.2; }
+@media (min-width: 860px) {
+  .poster.is-hero { left: calc(50% - 96px); top: auto; bottom: 0; width: 236px; padding: 22px 18px 15px; gap: 5px; }
+  .poster.is-hero::before { width: 86px; height: 22px; top: -11px; }
+  .poster.is-hero .tag { font-size: 10px; }
+  .poster.is-hero .poster-kicker { font-size: 9px; }
+  .poster.is-hero h2 { font-size: 25px; }
+  .poster.is-hero .poster-price { font-size: 24px; }
+  .poster.is-hero .poster-label { font-size: 10.5px; }
+}
+
 
 /* ---------- croissant buttons ---------- */
 .cbtn {

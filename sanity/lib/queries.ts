@@ -28,7 +28,8 @@ export const PROMO_QUERY = defineQuery(`
     kicker,
     headline,
     text,
-    offers[] { _key, price, label }
+    offers[] { _key, price, label },
+    "onHero": defined(heroUntil) && heroUntil > now()
   }
 `)
 

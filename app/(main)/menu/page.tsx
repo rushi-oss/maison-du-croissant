@@ -25,12 +25,15 @@ export default async function MenuPage() {
   ])
 
   return (
-    <main className="wrap">
-      <section className="menu is-page">
-        <h1 className="big menu-title">the menu.</h1>
-        {promo && <Promo promo={promo} />}
-        <MenuList items={items} drinks={drinks} />
-      </section>
+    // Plum, like the menu section on the homepage, so the white poster reads as a note taped on top.
+    <main className="band band-plum menu-page">
+      <div className="wrap">
+        <section className="menu is-page">
+          <h1 className="big menu-title">the menu.</h1>
+          {promo && <Promo promo={promo} variant="compact" />}
+          <MenuList items={items} drinks={drinks} />
+        </section>
+      </div>
     </main>
   )
 }

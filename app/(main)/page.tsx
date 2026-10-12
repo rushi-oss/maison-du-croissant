@@ -5,7 +5,7 @@ import NewItemsPill from "../components/NewItemsPill";
 import Visit from "../components/Visit";
 import Ticker from "../components/Ticker";
 import CroissantButton from "../components/CroissantButton";
-import Promo, { type PromoData } from "../components/Promo";
+import type { PromoData } from "../components/Promo";
 import { client } from "../../sanity/lib/client";
 import { DRINK_ITEMS_QUERY, MENU_ITEMS_QUERY, PROMO_QUERY, REVIEW_NOTES_QUERY } from "../../sanity/lib/queries";
 import type { DrinkItem, MenuItem, ReviewNote } from "../lib/types";
@@ -32,13 +32,8 @@ export default async function Home() {
   return (
     <>
       <main>
-        <Hero notes={noteUrls} />
+        <Hero notes={noteUrls} promo={promo?.onHero ? promo : null} />
 
-        {promo && (
-          <div className="wrap promo-wrap">
-            <Promo promo={promo} />
-          </div>
-        )}
 
         <Ticker words={items.map((i) => i.name.toLowerCase())} />
 

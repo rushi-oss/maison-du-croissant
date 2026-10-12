@@ -14,6 +14,13 @@ export const promo = defineType({
       initialValue: true,
     }),
     defineField({
+      name: 'heroUntil',
+      title: 'Show on the homepage until',
+      type: 'datetime',
+      description:
+        'Until this date the poster is taped onto the homepage photo, in place of the board note. After it, the homepage goes back to the board note. The menu page keeps showing the poster while "Show on the website" is on.',
+    }),
+    defineField({
       name: 'tag',
       title: 'Tag',
       type: 'string',

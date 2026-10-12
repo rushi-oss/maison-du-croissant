@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { MAPS_URL } from '../lib/site';
 import { useClientValue } from '../lib/useClientValue';
 import CroissantButton from './CroissantButton';
+import Promo, { type PromoData } from './Promo';
 
 // Real photos only. A slide with no src shows a labelled placeholder until its photo arrives.
 const SLIDES: { src: string | null; alt: string }[] = [
@@ -23,7 +24,7 @@ const SLIDE_INTERVAL_MS = 3800;
 let noteRoll: number | null = null;
 const getNoteRoll = () => (noteRoll ??= Math.random());
 
-export default function Hero({ notes }: { notes: string[] }) {
+export default function Hero({ notes, promo }: { notes: string[]; promo?: PromoData | null }) {
   const [active, setActive] = useState(0);
   // Tapping restarts the timer, so the next auto-advance never lands right after a tap.
   const [tapCount, setTapCount] = useState(0);
@@ -66,7 +67,9 @@ export default function Hero({ notes }: { notes: string[] }) {
           )}
         </button>
 
-        {notes.length > 0 && (
+        {promo ? (
+          <Promo promo={promo} variant="hero" />
+        ) : notes.length > 0 && (
           <figure className={`board-note${note ? '' : ' is-waiting'}`}>
             {note && (
               <Image src={note} alt="A customer note from the board by the counter" width={156} height={156} sizes="156px" />
@@ -86,7 +89,7 @@ export default function Hero({ notes }: { notes: string[] }) {
           </h1>
           <span className="caps hero-sub">Sodnac · Mauritius · from 9 am</span>
           <div className="hero-actions">
-            <CroissantButton href="#menu">see the menu</CroissantButton>
+            <CroissantButton href="/menu">see the menu</CroissantButton>
             <CroissantButton href={MAPS_URL} variant="line">directions</CroissantButton>
           </div>
         </div>
