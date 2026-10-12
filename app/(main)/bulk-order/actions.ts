@@ -96,7 +96,8 @@ export async function sendBulkOrder(input: BulkOrderInput): Promise<BulkOrderRes
       console.info(`[bulk order] email not configured, would send:\nSubject: ${subject}\n\n${text}`)
       return { ok: true }
     }
-    console.error('[bulk order] RESEND_API_KEY or BULK_ORDER_EMAIL_TO is missing')
+    const missing = [!apiKey && 'RESEND_API_KEY', !to && 'BULK_ORDER_EMAIL_TO'].filter(Boolean).join(' and ')
+    console.error(`[bulk order] missing setting: ${missing} (env: ${process.env.VERCEL_ENV ?? 'unknown'})`)
     return { ok: false, error: FALLBACK_ERROR }
   }
 
