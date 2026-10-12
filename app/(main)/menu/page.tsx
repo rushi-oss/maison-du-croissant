@@ -13,7 +13,7 @@ export const metadata: Metadata = pageMetadata({
   description:
     'Savory and sweet filled croissants, the croastie (the croissant toast!), coffee and cold drinks at Maison du Croissant, Sodnac.',
   path: '/menu',
-  image: { url: '/hero.jpeg', width: 1270, height: 1600, alt: 'A filled croissant on a pink backdrop' },
+  image: { url: '/og-menu.jpg', width: 1200, height: 630, alt: 'Maison du Croissant: a filled croissant on a pink backdrop' },
 })
 
 export default async function MenuPage() {

@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   alternates: null,
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${SITE_NAME} · filled croissants in Sodnac, Mauritius`,
+    default: `${SITE_NAME} · Filled Croissants in Sodnac, Mauritius`,
     template: `%s · ${SITE_NAME}`,
   },
 };

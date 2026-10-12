@@ -9,9 +9,12 @@ import CroissantButton from './CroissantButton';
 // Real photos only. A slide with no src shows a labelled placeholder until its photo arrives.
 const SLIDES: { src: string | null; alt: string }[] = [
   { src: '/hero2.jpeg', alt: 'Croissants on a deep purple surface' },
+  { src: '/slides/croissant-spread.jpg', alt: 'Strawberry, Nutella and Oreo croissants laid out in paper boats' },
+  { src: '/slides/pista-bliss.jpg', alt: 'Pista Bliss: pistachio cream and chocolate drizzle with gold leaf' },
   { src: '/hero.jpeg', alt: 'Pizza Puffie on a pink backdrop' },
+  { src: '/slides/cookie-cloud.jpg', alt: 'Cookie Cloud: chocolate cream and Oreo crumbs in a takeaway box' },
   { src: '/board.jpg', alt: 'The review board by the counter' },
-  { src: null, alt: 'Seating · photo to come' },
+  // The seating-area photo goes here once it's taken.
 ];
 
 const SLIDE_INTERVAL_MS = 3800;
@@ -77,7 +80,7 @@ export default function Hero({ notes }: { notes: string[] }) {
           <h1 className="big">
             {['croissants,', 'filled.'].map((line, i) => (
               <span className="rise-line" key={line}>
-                <span style={{ '--i': i } as React.CSSProperties}>{line}</span>
+                <span style={{ '--i': i } as React.CSSProperties}>{line}</span>{' '}
               </span>
             ))}
           </h1>

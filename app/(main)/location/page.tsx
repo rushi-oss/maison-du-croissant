@@ -7,7 +7,7 @@ export const metadata: Metadata = pageMetadata({
   description:
     'Maison du Croissant is on Ave Pelicans, Sodnac, Mauritius. Open Mon to Sat 9:00 to 17:30, Sun 9:00 to 13:00. Free parking.',
   path: '/location',
-  image: { url: '/board.jpg', width: 1020, height: 1280, alt: 'The review board by the counter' },
+  image: { url: '/og-visit.jpg', width: 1200, height: 630, alt: 'Maison du Croissant: the review board by the counter' },
 })
 
 export default function LocationPage() {
