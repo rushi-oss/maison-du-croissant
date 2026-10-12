@@ -16,7 +16,8 @@ export const MENU_ITEMS_QUERY = defineQuery(`
 export const DRINK_ITEMS_QUERY = defineQuery(`
   *[_type == "drinkItem" && available != false] | order(order asc) {
     _id,
-    name
+    name,
+    comingSoon
   }
 `)
 

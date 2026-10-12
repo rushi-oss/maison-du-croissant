@@ -19,6 +19,13 @@ export const drinkItem = defineType({
       validation: (r) => r.positive(),
     }),
     defineField({
+      name: 'comingSoon',
+      title: 'Coming soon',
+      type: 'boolean',
+      description: 'Shows a "coming soon" tag next to the drink on the menu.',
+      initialValue: false,
+    }),
+    defineField({
       name: 'available',
       title: 'Available',
       type: 'boolean',

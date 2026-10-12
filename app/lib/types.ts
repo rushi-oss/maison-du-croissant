@@ -1,6 +1,7 @@
 export type DrinkItem = {
   _id: string
   name: string
+  comingSoon?: boolean
 }
 
 export type MenuCategory = 'savory' | 'sweet' | 'croastie'

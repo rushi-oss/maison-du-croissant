@@ -371,17 +371,21 @@ button.cbtn { align-self: flex-start; cursor: pointer; font-size: 17px; }
 .cbtn:disabled { opacity: 0.6; cursor: progress; }
 .cbtn:hover { transform: translateY(-2px); box-shadow: 0 7px 0 var(--btn-shadow); }
 .cbtn:active { transform: translateY(4px); box-shadow: 0 1px 0 var(--btn-shadow); transition-duration: 0.06s; }
-.cbtn-ico { width: 36px; height: auto; flex-shrink: 0; color: var(--golden); overflow: visible; transition: transform 0.35s cubic-bezier(.3, 1.6, .5, 1); }
-.cbtn:hover .cbtn-ico { transform: rotate(-14deg) scale(1.12); }
+.cbtn-ico { width: 40px; height: auto; flex-shrink: 0; overflow: visible; margin-top: -6px; transition: transform 0.35s cubic-bezier(.3, 1.6, .5, 1); }
+.cbtn:hover .cbtn-ico { transform: translateY(-1px) scale(1.06); }
 .cbtn-arrow { transition: transform 0.25s ease; }
 .cbtn:hover .cbtn-arrow { transform: translateX(4px); }
-/* Each piece puffs from its own centre (set inline), measured in the icon's own coordinates. */
-.croissant .seg { transform-box: view-box; }
-/* The segments puff up one after another, end to end. */
-.cbtn:hover .seg, .cbtn:focus-visible .seg, .cbtn:active .seg { animation: puff 0.55s ease; animation-delay: calc(var(--s) * 0.07s); }
-/* The hero's main button puffs once by itself, to catch the eye on phones too. */
-.hero-actions .cbtn-solid .seg { animation: puff 0.55s ease calc(var(--intro-delay) + 1.3s + var(--s) * 0.07s); }
-@keyframes puff { 40% { transform: scale(1.2); } }
+/* The croissant: golden roll (red in the pink strip), darker folds. */
+.croissant .bun { fill: var(--croissant, var(--golden)); }
+.croissant .folds { stroke: #C77D1E; }
+/* Steam rises while the button is hovered or pressed, and keeps rising gently on the hero's
+   main button so phones (no hover) see it too. Hidden otherwise. */
+.croissant .steam path { opacity: 0; }
+.cbtn:hover .steam path, .cbtn:focus-visible .steam path, .cbtn:active .steam path,
+.hero-actions .cbtn-solid .steam path { animation: steam 2.2s ease-out infinite; }
+.croissant .steam path:nth-child(2) { animation-delay: 0.25s; }
+.croissant .steam path:nth-child(3) { animation-delay: 0.5s; }
+@keyframes steam { 0% { opacity: 0; transform: translateY(4px); } 30% { opacity: 0.9; } 100% { opacity: 0; transform: translateY(-10px); } }
 .hero-actions { gap: 16px 14px; padding-top: 6px; }
 .cta-row { display: flex; flex-wrap: wrap; gap: 16px 14px; }
 
@@ -449,7 +453,8 @@ html.js [data-reveal].is-in .notes .round { transform: none; }
   display: inline-flex; align-items: center; gap: 18px; padding-right: 18px;
   font-family: var(--display); font-weight: 800; font-size: 22px; letter-spacing: -0.01em; white-space: nowrap;
 }
-.ticker-item svg { width: 34px; height: auto; color: var(--red); }
+.ticker-item svg { width: 36px; height: auto; --croissant: var(--red); --golden: var(--red); }
+.ticker-item .folds { stroke: #9E1A20; }
 @keyframes ticker { to { transform: translateX(-50%); } }
 
 /* Anyone who has asked their device for less motion gets the still version of everything. */

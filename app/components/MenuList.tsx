@@ -43,12 +43,12 @@ export default function MenuList({ items, drinks }: { items: MenuItem[]; drinks:
         <ul>
           {drinks.map((drink, i) => (
             <li key={drink._id} style={{ '--i': i } as React.CSSProperties}>
-              <span className="dish">{drink.name}</span>
+              <span className="dish">
+                {drink.name}
+                {drink.comingSoon && <span className="tag">coming soon</span>}
+              </span>
             </li>
           ))}
-          <li style={{ '--i': drinks.length } as React.CSSProperties}>
-            <span className="desc">Cold no sugar fruit juices available</span>
-          </li>
         </ul>
       </div>
     </div>
