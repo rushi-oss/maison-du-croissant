@@ -26,6 +26,8 @@ export const metadata: Metadata = {
   // Each page sets its own canonical; inheriting "/" would point every page at the homepage.
   alternates: null,
   metadataBase: new URL(SITE_URL),
+  // Proves to Google Search Console (bakery's account) that this site is ours. Keep it.
+  verification: { google: "iq2NOogmCKm3zU9hmxBHV01RLf5tY1SWgsEdcZYsCQ0" },
   title: {
     default: `${SITE_NAME} · Filled Croissants in Sodnac, Mauritius`,
     template: `%s · ${SITE_NAME}`,
