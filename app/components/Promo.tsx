@@ -23,16 +23,7 @@ export default function Promo({ promo, variant = 'full' }: { promo: PromoData; v
       {promo.kicker && <p className="caps poster-kicker">{promo.kicker}</p>}
       <h2 className="big">{promo.headline}</h2>
       {promo.text && !compact && <p className="poster-text">{promo.text}</p>}
-      {promo.offers && promo.offers.length > 0 && (
-        <div className="poster-offers">
-          {promo.offers.map((offer) => (
-            <div key={offer._key}>
-              <span className="poster-price">Rs {offer.price}</span>
-              <span className="poster-label">{offer.label}</span>
-            </div>
-          ))}
-        </div>
-      )}
+      {/* Prices are kept in Studio but not shown on the website. */}
     </aside>
   )
 }
