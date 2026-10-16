@@ -12,6 +12,7 @@ export const WHATSAPP_URL = 'https://wa.me/message/AYGDQL73A2RUC1'
 export const INSTAGRAM_URL = 'https://www.instagram.com/maisonducroissant_'
 export const TIKTOK_URL = 'https://www.tiktok.com/@maison.du.croissant'
 export const BUILD_VIDEO_URL = 'https://vt.tiktok.com/ZSCm6rdMa/'
+export const BAKE_SALE_POST_URL = 'https://www.instagram.com/p/DRmqgC7jftT/'
 export const GOOGLE_REVIEW_URL = 'https://g.page/r/CZuGp1XQsegZEAE/review'
 
 export const HOURS = [

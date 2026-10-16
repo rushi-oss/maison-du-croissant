@@ -409,6 +409,11 @@ main { overflow-x: clip; }
 }
 
 
+/* ---------- giving back ---------- */
+.giving { padding-block: 64px; }
+.giving-text { display: flex; flex-direction: column; gap: 16px; }
+.giving h2 { font-size: 40px; line-height: 1; }
+
 /* ---------- croissant buttons ---------- */
 .cbtn {
   --btn-bg: var(--ink); --btn-fg: var(--paper); --btn-shadow: var(--pink);
