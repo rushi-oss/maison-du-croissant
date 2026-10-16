@@ -9,7 +9,8 @@ import type { PromoData } from "../components/Promo";
 import { client } from "../../sanity/lib/client";
 import { DRINK_ITEMS_QUERY, MENU_ITEMS_QUERY, PROMO_QUERY, REVIEW_NOTES_QUERY } from "../../sanity/lib/queries";
 import type { DrinkItem, MenuItem, ReviewNote } from "../lib/types";
-import { BAKE_SALE_POST_URL, BUILD_VIDEO_URL, GOOGLE_REVIEW_URL } from "../lib/site";
+import { BUILD_VIDEO_URL, GOOGLE_REVIEW_URL } from "../lib/site";
+import GivingBack from "../components/GivingBack";
 import { pageMetadata, SITE_DESCRIPTION } from "../lib/metadata";
 
 // Studio edits show up within a minute, without a redeploy.
@@ -96,25 +97,7 @@ export default async function Home() {
 
         <div className="band">
           <div className="wrap">
-            <section className="giving" id="giving-back">
-              <div className="giving-text">
-                <h2 className="big" data-reveal="left">giving back.</h2>
-                <div className="story-text" data-reveal>
-                  <p>
-                    Last year we baked for MauRevive&apos;s Bake Sale fundraiser, alongside NAFCO: two non-profits
-                    bringing light and support into the lives of children with special needs. Every pastry helped
-                    them get a little closer to their goal.
-                  </p>
-                  <p>
-                    We also got to teach a group of young volunteers to bake. They picked it up fast and worked
-                    brilliantly as a team.
-                  </p>
-                </div>
-                <div>
-                  <CroissantButton href={BAKE_SALE_POST_URL} variant="line">see it on Instagram</CroissantButton>
-                </div>
-              </div>
-            </section>
+            <GivingBack />
           </div>
         </div>
 

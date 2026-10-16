@@ -411,6 +411,8 @@ main { overflow-x: clip; }
 
 /* ---------- giving back ---------- */
 .giving { padding-block: 64px; }
+.giving.is-page { padding-block: 24px 140px; }
+.giving.is-page h1 { font-size: clamp(56px, 14vw, 104px); line-height: 0.9; }
 .giving-text { display: flex; flex-direction: column; gap: 16px; }
 .giving h2 { font-size: 40px; line-height: 1; }
 
